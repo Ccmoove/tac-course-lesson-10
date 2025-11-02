@@ -7,10 +7,13 @@ terraform {
   }
 }
 
+#gcloud.auth.application-default login
+
 provider "google" {
   # Modify the project name to match yours!
-  project = "project-1-473714>"
-  region  = "us-east4"
+  project = "project-1-473714"
+  region  = "us-central1"
+  zone = "us-central1-a"
 }
 
 resource "google_compute_network" "vpc_network" {
@@ -41,7 +44,7 @@ resource "google_compute_instance" "google_vm_1" {
 
   # Add SSH Support!
   metadata = {
-    ssh-keys = file("../keys/ssh_key.pub")
+    ssh-keys = file("../keys/{ssh_key}.pub")
   }
 
   # Update VM (and do other tasks such as software installations. 
